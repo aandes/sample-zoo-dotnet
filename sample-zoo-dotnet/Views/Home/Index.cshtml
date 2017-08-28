@@ -1,0 +1,12 @@
+﻿<h1 @Cms.Edit("zoo-title")>
+    @ViewBag.cms.Text("zoo-title.jcr:title", "Please provide a title")
+</h1>
+
+<p @Cms.Edit("zoo-description")>
+    @ViewBag.cms.Html("zoo-description.text", "Please provide a description")
+</p>
+
+@Html.Partial("Components/_LinkButton", new CmsComponentModel {
+    cms = ViewBag.cms.Content("see-aquatic-btn"),
+    key = "see-aquatic-btn" 
+})

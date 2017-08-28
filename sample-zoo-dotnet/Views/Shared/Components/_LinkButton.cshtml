@@ -1,0 +1,7 @@
+﻿@using sample_zoo_dotnet.Models
+@* component linkbutton *@
+<a @Cms.Edit(Model.key)
+   href="@Model.cms.Text("href", "#")"
+   class="@Model.cms.Text("cssClass", "link-button")">
+    @Model.cms.Text("text", "Insert Link")
+</a>

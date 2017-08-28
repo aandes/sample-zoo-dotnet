@@ -1,0 +1,12 @@
+﻿@using sample_zoo_dotnet.Models
+@* component animalcard *@
+<div @Cms.Edit(Model.key) 
+    class="animal-card animal-card-app">
+    
+    <h3>@Model.cms.Text("title", "Insert animal name")</h3>
+
+    <img src="@(Cms.Origin + Model.cms.Text("image.filePath", Cms.ImgPlaceholder))"
+         alt="@Model.cms.Text("title")">
+
+    <p>@Model.cms.Html("description", "Insert animal description")</p>
+</div>

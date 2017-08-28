@@ -1,0 +1,40 @@
+﻿@using sample_zoo_dotnet.Models;
+@using Newtonsoft.Json.Linq;
+
+<ul class="animal-list">
+    @foreach (JProperty card in (JToken)ViewBag.cms.Object("cards"))
+    {
+        string key = card.Name;
+
+        if (!key.StartsWith("jcr:"))
+        {
+
+            @Html.Partial("Components/_AnimalCard", new CmsComponentModel
+            {
+                cms = new ContentHelper(card.Value),
+                key = "cards/" + key
+            })
+
+        }
+
+    }
+</ul>
+
+<div class="button-list">
+    @foreach (JProperty link in (JToken)ViewBag.cms.Object("links"))
+    {
+        string key = link.Name;
+
+        if (!key.StartsWith("jcr:"))
+        {
+
+            @Html.Partial("Components/_LinkButton", new CmsComponentModel
+            {
+                cms = new ContentHelper(link.Value),
+                key = "links/" + key
+            })
+
+        }
+
+    }
+</div>
