@@ -47,6 +47,8 @@ TestResults/
 *.rar
 *.tar
 *.zip
+# but allow the aem contents
+!aem_content/*
 ######################
 # Logs and databases #
 ######################
