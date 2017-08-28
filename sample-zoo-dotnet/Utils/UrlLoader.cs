@@ -8,14 +8,18 @@ using System.IO;
 
 namespace sample_zoo_dotnet.Utils
 {
+    // simple URL Loader... but more than enough to work with AEM/Sling
     public class UrlLoader
     {
         
-        public UrlLoader (string user = null, string pass = null) {
+        // Creates the instance
+        public UrlLoader(string user = null, string pass = null)
+        {
             _user = user;
             _pass = pass;
         }
 
+        // Load and return text at the provided URL
         public string Fetch(string url)
         {
             HttpClientHandler handler;
@@ -35,34 +39,30 @@ namespace sample_zoo_dotnet.Utils
                             responseString = Request(client, url);
                         }
                     };
-
                 }
                 else {
-
                     // initialize http client object un-authenticated
                     using (var client = new HttpClient())
                     {
                         responseString = Request(client, url);
                     }
-            
                 }
-
             }
             catch (Exception e) {
-                // add custom error logging here
-                System.Console.WriteLine(e.Message);
+                Log.Error(e);
                 responseString = null;
             }
 
             return responseString;
-
         }
 
+        // tells whether the request should pass the provided credentials
         public bool Authenticate {
             get { return _authenticate;  }
             set { _authenticate = value; }
         }
 
+        // makes an HTTP request the provided URL using this client
         private string Request (HttpClient client, string url) {
             
             string responseString = null;
@@ -78,12 +78,13 @@ namespace sample_zoo_dotnet.Utils
             return responseString;
         
         }
-        
-        private bool _authenticate; 
+
+        #region Private members
+        private bool _authenticate;
         
         private string _user,
                        _pass;
-
+        #endregion
     }
 
 }

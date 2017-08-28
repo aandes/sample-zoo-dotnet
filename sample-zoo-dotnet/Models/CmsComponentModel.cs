@@ -6,23 +6,10 @@ using sample_zoo_dotnet.Utils;
 
 namespace sample_zoo_dotnet.Models
 {
-    public class CmsComponentModel
+    // this is used for the components, which are 
+    // simply the partial views with a content key
+    public class CmsComponentModel: CmsViewModel
     {
-        public CmsComponentModel() { }
-
-        public ContentHelper cms 
-        {
-            get { return _cms;  }
-            set { _cms = value; }
-        }
-
-        public string key
-        {
-            get { return _key; }
-            set { _key = value; }
-        }
-
-        private ContentHelper _cms;
-        private string _key;
+        public string key { get; set; }
     }
 }

@@ -114,10 +114,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CmsViewModel.cs" />
     <Compile Include="Models\CmsComponentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Cms.cs" />
     <Compile Include="Utils\ContentHelper.cs" />
+    <Compile Include="Utils\Log.cs" />
     <Compile Include="Utils\UrlLoader.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +160,8 @@
     <Content Include="Views\Shared\_Rapid.cshtml" />
     <Content Include="Views\Shared\Components\_LinkButton.cshtml" />
     <Content Include="Views\Shared\Components\_AnimalCard.cshtml" />
+    <Content Include="Views\Shared\_AnimalList.cshtml" />
+    <Content Include="Views\Shared\_ButtonList.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

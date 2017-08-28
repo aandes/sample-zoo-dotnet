@@ -1,0 +1,37 @@
+﻿@using Newtonsoft.Json.Linq;
+@{ int count = 0; }
+
+<div class="button-list">
+    @*loop through the properties of the 'links' object found in the content*@
+    @foreach (JProperty link in (JToken)Model.Object("links"))
+    {
+        string key = link.Name;
+
+        if (!key.StartsWith("jcr:"))
+        {
+
+            @*and cast any property not starting with 'jcr:' to an linkbutton component*@
+            @Html.Partial("Components/_LinkButton", new CmsComponentModel {
+                cms = new ContentHelper(link.Value),
+                key = "links/" + key
+            })
+        
+            ++count;
+
+        }
+
+    }
+
+    @*optional: allows to add more items of the same type on the page
+      to allow arbitrary items, use a container component (e.g. parsys)
+      see Web.config -> appSettings ->cmsAllowComponentsInsertion *@
+    @if (Cms.AllowComponentsInsertion)
+    {
+
+        @Html.Partial("Components/_LinkButton", new CmsComponentModel {
+            cms = new ContentHelper(new JObject()),
+            key = "links/link" + count
+        })
+
+    }
+</div>
