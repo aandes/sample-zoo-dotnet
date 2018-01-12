@@ -23,10 +23,6 @@ namespace sample_zoo_dotnet.Utils
             // name of the target application in the cms
             _mirror = settings["cmsMirror"];
 
-            // build rapid url
-            _rapidUrl = String.Format("{0}:{1}/~rapid/edit/{2}",
-                settings["cmsHost"], settings["cmsRapidPort"], _mirror);
-
             // prepare cms content urlLoaderer
             urlLoader = new UrlLoader(settings["cmsUser"], settings["cmsPass"]);
 
@@ -37,6 +33,9 @@ namespace sample_zoo_dotnet.Utils
             // prepare cms content urls
             _cmsOrigin = settings["cmsHost"] + ":" + settings["cmsPort"];
             _contentFormat = settings["cmsContentFormat"];
+
+            // cache rapid script url template
+            _cmsRapidScript = settings["cmsRapidScript"];
 
             // optional: this is for this application only
             // whether the content author is allowed to introduce 
@@ -96,7 +95,14 @@ namespace sample_zoo_dotnet.Utils
         // returns RAPID's script tag src value
         public static string RapidUrl
         {
-            get { return _rapidUrl; }
+            get
+            {
+                // optional: pass the current locale as a context path to RAPID
+                // for example:  "/en/us"  or  "/fr"  
+                string currentLocale = "";
+                return String.Format(_cmsRapidScript, _cmsOrigin, _mirror, currentLocale);
+            }
+
         }
 
         // returns the path of a dummy placeholder image in the CMS
@@ -125,9 +131,9 @@ namespace sample_zoo_dotnet.Utils
                             _allowComponentsInsertion;
 
         private static string _mirror,
-                              _rapidUrl,
                               _cmsOrigin,
                               _contentFormat,
+                              _cmsRapidScript,
                               _imgPlaceholder;
         #endregion
     }
