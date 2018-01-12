@@ -60,9 +60,10 @@ namespace sample_zoo_dotnet.Utils
             string contentPath = string.Format(_contentFormat,
                 // {0}: cmsOrigin 
                 // {1}: cmsMirror
-                // {2}: current action
-                // {3}: content key (optional)
-                _cmsOrigin, _mirror, action, key);
+                // {2}: cmsContentContext
+                // {3}: current action
+                // {4}: content key (optional)
+                _cmsOrigin, _mirror, getCmsContentContext(), action, key);
 
             // make the request
             string json = urlLoader.Fetch(contentPath);
@@ -99,8 +100,7 @@ namespace sample_zoo_dotnet.Utils
             {
                 // optional: pass the current locale as a context path to RAPID
                 // for example:  "/en/us"  or  "/fr"  
-                string currentLocale = "";
-                return String.Format(_cmsRapidScript, _cmsOrigin, _mirror, currentLocale);
+                return String.Format(_cmsRapidScript, _cmsOrigin, _mirror, getCmsContentContext());
             }
 
         }
@@ -122,6 +122,14 @@ namespace sample_zoo_dotnet.Utils
         public static bool AllowComponentsInsertion
         {
             get { return _autoring && _allowComponentsInsertion; }
+        }
+
+        private static string getCmsContentContext()
+        {
+            // optional: pass the current locale as a context path to RAPID
+            // for example:  "/en/us"  or  "/fr"  
+            // could be retrieved from a call like SomeLocaleProvider.getCurrentLocale().toCmsContentContext() for example
+            return "";
         }
 
         #region Private members
