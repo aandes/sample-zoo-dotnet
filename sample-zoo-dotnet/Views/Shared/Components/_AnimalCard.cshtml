@@ -5,8 +5,11 @@
     
     <h3>@Model.cms.Text("title", "Insert animal name")</h3>
 
-    <img src="@(Cms.Origin + Model.cms.Text("image.filePath", Cms.ImgPlaceholder))"
+    <img src="@(Cms.Origin + Model.cms.Text("image.filePath", Cms.ImgPlaceholder) + 
+              // disable cache when editing
+              (Cms.Authoring ? "?_" + (new Random()).Next().ToString("X") : String.Empty))"
          alt="@Model.cms.Text("title")">
 
     <p>@Model.cms.Html("description", "Insert animal description")</p>
+
 </div>

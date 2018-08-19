@@ -1,3 +1,0 @@
-[class*="cq-element-"] {display: inline-block}
-[class*="cq-element-"] + [class*="cq-placeholder"],
-[class*="cq-element-"] ~ [class*="cq-placeholder"]{display: none!important}

@@ -5,21 +5,25 @@
     @*loop through the properties of the 'cards' object found in the content*@
     @foreach (JProperty card in (JToken)Model.Object("cards"))
     {
-        string key = card.Name;
+        <li>
+            @{
+                string key = card.Name;
 
-        if (!key.StartsWith("jcr:"))
-        {
+                if (!key.StartsWith("jcr:"))
+                {
 
-            @*and cast any property not starting with 'jcr:' to an animalcard component*@
-            @Html.Partial("Components/_AnimalCard", new CmsComponentModel {
-                cms = new ContentHelper(card.Value),
-                key = "cards/" + key
-            })
-        
-            ++count;
+                    @*and cast any property not starting with 'jcr:' to an animalcard component*@
+                    @Html.Partial("Components/_AnimalCard", new CmsComponentModel
+                    {
+                        cms = new ContentHelper(card.Value),
+                        key = "cards/" + key
+                    })
 
-        }
+                    ++count;
 
+                }
+            }
+        </li>
     }
 
     @*optional: allows to add more items of the same type on the page
@@ -27,11 +31,11 @@
       see Web.config -> appSettings ->cmsAllowComponentsInsertion *@
     @if (Cms.AllowComponentsInsertion)
     {
-
-        @Html.Partial("Components/_AnimalCard", new CmsComponentModel {
-            cms = new ContentHelper(new JObject()),
-            key = "cards/card" + count
-        })
-
+        <li>
+            @Html.Partial("Components/_AnimalCard", new CmsComponentModel {
+                cms = new ContentHelper(new JObject()),
+                key = "cards/card" + count
+            })
+        </li>
     }
 </ul>

@@ -10,7 +10,6 @@ namespace sample_zoo_dotnet
             bundles.Add(new StyleBundle("~/styles/css").Include(
                       "~/Assets/css/global.css",
                       "~/Assets/css/components.css",
-                      "~/Assets/css/aem-components.css",
                       "~/Assets/css/view/index.css"));
         }
     }

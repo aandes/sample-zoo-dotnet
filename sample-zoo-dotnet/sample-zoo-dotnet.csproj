@@ -123,15 +123,9 @@
     <Compile Include="Utils\UrlLoader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\css\aem-components.css" />
     <Content Include="Assets\css\components.css" />
     <Content Include="Assets\css\global.css" />
     <Content Include="Assets\css\view\index.css" />
-    <Content Include="Assets\img\dolphin.png" />
-    <Content Include="Assets\img\elephant.png" />
-    <Content Include="Assets\img\hippopotamus.png" />
-    <Content Include="Assets\img\panda.png" />
-    <Content Include="Assets\img\turtle.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
